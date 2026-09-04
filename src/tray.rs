@@ -133,7 +133,7 @@ pub fn run_tray_app(gamepad: Option<GamepadManager>) {
         copy_to_wide(&mut nid.szTip, &initial_tip);
 
         // Startup Balloon Notification
-        copy_to_wide(&mut nid.szInfoTitle, "Roblox Caffeine v2.1 (Rust)");
+        copy_to_wide(&mut nid.szInfoTitle, "Roblox Caffeine v2.1.1 (Rust)");
         copy_to_wide(
             &mut nid.szInfo,
             "Anti-AFK active! Keeping your Roblox windows awake with zero focus stealing.",
@@ -247,7 +247,7 @@ unsafe fn show_context_menu(hwnd: HWND) {
         let menu = CreatePopupMenu();
         let submenu_interval = CreatePopupMenu();
 
-        let title = "Roblox Caffeine v2.1 (Rust)\0".encode_utf16().collect::<Vec<_>>();
+        let title = "Roblox Caffeine v2.1.1 (Rust)\0".encode_utf16().collect::<Vec<_>>();
         AppendMenuW(menu, MF_STRING | MF_DISABLED | MF_GRAYED, IDM_TITLE, title.as_ptr());
         AppendMenuW(menu, MF_SEPARATOR, 0, ptr::null());
 

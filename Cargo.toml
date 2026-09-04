@@ -1,6 +1,6 @@
 [package]
 name = "roblox-caffeine-win"
-version = "2.1.0"
+version = "2.1.1"
 edition = "2021"
 authors = ["vexolune", "EbadShelby"]
 description = "Ultra-lightweight Windows anti-AFK utility for Roblox via ViGEmBus virtual Xbox 360 controller"
