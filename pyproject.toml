@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roblox-caffeine-win"
+version = "1.0.0"
+description = "Minimalist Windows keep-alive utility that prevents Roblox's 20-minute inactivity kick via ViGEmBus virtual Xbox 360 gamepad — zero focus stealing, multi-window support."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "vgamepad>=0.1.0",
+    "psutil>=5.9.0",
+    "pywin32>=306",
+]
+keywords = ["roblox", "caffeine", "keep-alive", "anti-afk", "gamepad", "vigem", "vgamepad", "windows"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+    "Topic :: Games/Entertainment",
+]
+
+[project.urls]
+Homepage = "https://github.com/EbadShelby/roblox-caffeine"
+
+[project.scripts]
+roblox-caffeine-win = "roblox_caffeine_win:main"
+
+[tool.setuptools]
+py-modules = ["roblox_caffeine_win"]

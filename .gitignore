@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.spec
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Build artifacts (temp)
+build/
+dist/
+*.xml
+*.log
+
+# Keep release folder (contains compiled exe and setup helper)
+!release/
+!release/*
