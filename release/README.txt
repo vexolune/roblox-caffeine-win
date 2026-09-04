@@ -2,6 +2,8 @@
 ║         ROBLOX CAFFEINE — Anti-AFK for Windows       ║
 ║              Keep your Roblox awake, always.         ║
 ║   Original Linux Project by EbadShelby (github)      ║
+║   Windows Port & v2.1 Rust Edition by vexolune       ║
+║   Ultra-Lightweight: ~457 KB Binary, ~8 MB RAM       ║
 ╚══════════════════════════════════════════════════════╝
 
 ─────────────────────────────────────────────────────────

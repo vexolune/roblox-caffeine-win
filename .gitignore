@@ -20,3 +20,6 @@ dist/
 # Release binaries (distributed via GitHub Releases)
 release/*.exe
 release/*.zip
+
+# Rust
+target/

@@ -5,20 +5,21 @@
 | _ \/ _ \| _ ) |  / _ \ \/  / __| /_\ | __| __| __|_ _| \| | __|
 |   / (_) | _ \ |_| (_) >  <  | (__ / _ \| _|| _|| _| | || .` | _| 
 |_|_\\___/|___/____\___/_/\_\  \___/_/ \_\_| |_| |___|___|_|\_|___|
-                      [ Windows Edition v2.0 ]
+                 [ Windows Edition v2.1 — Rust Rewrite ]
 ```
 
 ### Keep all your Roblox windows awake on Windows — zero focus stealing
 #### Ported & expanded from the original Linux project by [EbadShelby](https://github.com/EbadShelby/roblox-caffeine)
 
 [![GitHub Release](https://img.shields.io/github/v/release/vexolune/roblox-caffeine-win?style=flat-square&color=blue)](https://github.com/vexolune/roblox-caffeine-win/releases)
-[![Original Project](https://img.shields.io/badge/Original%20Linux%20Project-EbadShelby%2Froblox--caffeine-orange?style=flat-square&logo=github)](https://github.com/EbadShelby/roblox-caffeine)
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Rust](https://img.shields.io/badge/Language-Rust%20(Pure%20Native)-orange.svg?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Size](https://img.shields.io/badge/Binary%20Size-~457%20KB-brightgreen.svg?style=flat-square)](https://github.com/vexolune/roblox-caffeine-win/releases)
+[![Memory](https://img.shields.io/badge/RAM%20Usage-~8%20MB-success.svg?style=flat-square)](https://github.com/vexolune/roblox-caffeine-win/releases)
 [![Windows](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011-blue.svg?style=flat-square&logo=windows&logoColor=white)](https://microsoft.com/windows)
 [![ViGEmBus](https://img.shields.io/badge/Driver-ViGEmBus%20(WHQL)-informational.svg?style=flat-square)](https://github.com/nefarius/ViGEmBus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-*A minimalist, zero-focus-stealing anti-AFK utility that prevents Roblox's 20-minute inactivity kick using a virtual Xbox 360 gamepad (ViGEmBus). Keeps **all** open Roblox windows alive simultaneously without touching your mouse, keyboard, or window focus.*
+*An ultra-lightweight (**~457 KB**), zero-focus-stealing anti-AFK utility rewritten in **pure Rust**. Prevents Roblox's 20-minute inactivity kick using a virtual Xbox 360 gamepad (ViGEmBus). Keeps **all** open Roblox windows alive simultaneously with zero impact on mouse, keyboard, or system resources.*
 
 </div>
 
@@ -75,49 +76,31 @@ Traditional anti-AFK methods on Windows like auto-clickers, macros, or Lua scrip
 No Python installation required!
 
 1. Download the latest release from **[GitHub Releases](https://github.com/vexolune/roblox-caffeine-win/releases/latest)**:
-   - **`RobloxCaffeine-v2.0.0-Windows.zip`** (Recommended package)
-   - Or download **`RobloxCaffeine.exe`** directly.
+   - **`RobloxCaffeine-v2.1.0-Rust-Windows.zip`** (Ultra-lightweight package, only **~310 KB**!)
+   - Or download **`RobloxCaffeine.exe`** directly (**~457 KB**).
 2. Extract the zip and run **`Setup.bat`** (or double-click **`RobloxCaffeine.exe`**).
-   - If prompted by UAC on the first launch, click **Yes** to allow the ViGEmBus driver installation.
+   - If prompted by UAC on first launch, click **Yes** to allow ViGEmBus controller registration.
 3. Look for the coffee cup icon (☕) in the bottom-right system tray.
 4. That's it! Minimise Roblox and work or play freely.
 
 ---
 
-## 🛠️ Developer Setup & Running from Source
+## 🛠️ Developer Setup & Building from Source (Rust)
 
 ### Requirements
 - Windows 10 / 11 (64-bit)
-- Python 3.8+
-- Dependencies: `vgamepad`, `psutil`, `pywin32`, `pystray`, `Pillow`
+- Rust toolchain (`cargo`, `rustc` 1.80+)
+- MinGW GCC (`C:\msys64\mingw64\bin\gcc.exe` or MSVC)
 
-### 1. Installation
-Clone the repository and install requirements:
+### Build Ultra-Lightweight `.exe` with Cargo:
 ```powershell
-git clone https://github.com/EbadShelby/roblox-caffeine.git
-cd roblox-caffeine/roblox-caffeine-win
-pip install -r requirements.txt
-# Or run install.bat directly
-```
+# Quick one-click build:
+.\build_rust.bat
 
-### 2. Run in Terminal (CLI Mode)
-Runs with the classic terminal dashboard:
-```powershell
-python roblox_caffeine_win.py
+# Or manual cargo command:
+cargo build --release
 ```
-
-### 3. Run in System Tray (GUI Mode)
-Runs silently in the Windows taskbar:
-```powershell
-python roblox_caffeine_tray.py
-```
-
-### 4. Build Standalone `.exe`
-To compile the standalone executable yourself:
-```powershell
-.\build.bat
-```
-Output will be generated in `dist\RobloxCaffeine.exe` and synced to `release\RobloxCaffeine.exe`.
+The resulting binary (`release\RobloxCaffeine.exe`) is **only ~457 KB** with zero external runtime dependencies!
 
 ---
 
@@ -125,8 +108,26 @@ Output will be generated in `dist\RobloxCaffeine.exe` and synced to `release\Rob
 
 ```text
 roblox-caffeine-win/
-├── release/                        # Ready-to-use distribution
-│   ├── RobloxCaffeine.exe         # Prebuilt standalone executable
+├── src/                            # Pure Rust implementation
+│   ├── main.rs                    # Entry point & single-instance mutex
+│   ├── gamepad.rs                 # ViGEmBus virtual Xbox 360 controller
+│   ├── tray.rs                    # Native Win32 tray, countdown tooltip & menu
+│   ├── detector.rs                # Process enumeration for Roblox instances
+│   └── config.rs                  # Settings JSON (%APPDATA%) & Registry auto-start
+├── Cargo.toml                     # Rust package & optimizations
+├── build.rs                       # Embeds icon.ico into PE binary resource
+├── app.rc                         # Windows resource definition
+├── build_rust.bat                 # One-click Cargo build script
+├── release/                       # Ready-to-use distribution folder
+│   ├── RobloxCaffeine.exe        # Prebuilt native Rust binary (~457 KB)
+│   ├── Setup.bat                 # First-run driver installer
+│   └── README.txt                # End-user quick start guide
+├── roblox_caffeine_tray.py       # Python reference implementation (v2.0)
+├── roblox_caffeine_win.py        # Python CLI reference implementation
+├── PULL_REQUEST.md               # Upstream PR documentation
+├── LICENSE                       # MIT License
+└── README.md                     # Documentation
+```
 │   ├── Setup.bat                  # First-run driver installer
 │   └── README.txt                 # End-user quick start guide
 ├── roblox_caffeine_tray.py        # v2.0 System Tray implementation
