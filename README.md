@@ -125,22 +125,14 @@ roblox-caffeine-win/
 │   └── README.txt                # End-user quick start guide
 ├── roblox_caffeine_tray.py       # Python reference implementation (v2.0)
 ├── roblox_caffeine_win.py        # Python CLI reference implementation
-├── PULL_REQUEST.md               # Upstream PR documentation
-├── LICENSE                       # MIT License
-└── README.md                     # Documentation
-```
-│   ├── Setup.bat                  # First-run driver installer
-│   └── README.txt                 # End-user quick start guide
-├── roblox_caffeine_tray.py        # v2.0 System Tray implementation
-├── roblox_caffeine_win.py         # Classic CLI terminal daemon
-├── build.bat                      # Build script (Nuitka / PyInstaller)
-├── install.bat                    # Dependency installer
+├── build.bat                      # Python build script (Nuitka / PyInstaller)
+├── install.bat                    # Python dependency installer
 ├── icon.ico                       # Embedded multi-resolution coffee icon
 ├── icon.png                       # Asset preview image
 ├── pyproject.toml                 # Package definition
-├── PULL_REQUEST.md                # Ready-to-submit PR documentation for upstream
-├── LICENSE                        # MIT License
-└── README.md                      # This documentation
+├── PULL_REQUEST.md               # Upstream PR documentation
+├── LICENSE                       # MIT License
+└── README.md                     # Documentation
 ```
 
 ---
