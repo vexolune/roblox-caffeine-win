@@ -24,7 +24,7 @@ impl GamepadManager {
     }
 
     pub fn pulse(&mut self, direction_step: usize) -> Result<(), String> {
-        // Alternating diagonal deflections matching original logic
+        // Alternating right thumbstick deflections (controls camera pan in Roblox, character never moves)
         let directions: [(i16, i16); 4] = [
             (22_000, 22_000),   // UP-RIGHT
             (-22_000, 22_000),  // UP-LEFT
@@ -32,20 +32,20 @@ impl GamepadManager {
             (-22_000, -22_000), // DOWN-LEFT
         ];
 
-        let (lx, ly) = directions[direction_step % directions.len()];
+        let (rx, ry) = directions[direction_step % directions.len()];
 
         let mut report = XGamepad::default();
-        report.thumb_lx = lx;
-        report.thumb_ly = ly;
+        report.thumb_rx = rx;
+        report.thumb_ry = ry;
         self.target
             .update(&report)
             .map_err(|e| format!("Failed to send gamepad report: {:?}", e))?;
 
-        thread::sleep(Duration::from_millis(300));
+        thread::sleep(Duration::from_millis(200));
 
         // Re-center to absolute neutral (0, 0)
-        report.thumb_lx = 0;
-        report.thumb_ly = 0;
+        report.thumb_rx = 0;
+        report.thumb_ry = 0;
         self.target
             .update(&report)
             .map_err(|e| format!("Failed to reset gamepad neutral: {:?}", e))?;

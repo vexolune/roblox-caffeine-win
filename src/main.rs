@@ -2,6 +2,7 @@
 
 mod config;
 mod detector;
+mod focus;
 mod gamepad;
 mod installer;
 mod tray;

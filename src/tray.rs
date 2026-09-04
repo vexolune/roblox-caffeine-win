@@ -1,7 +1,8 @@
 #![allow(static_mut_refs)]
 
 use crate::config::{is_autostart_enabled, load_settings, save_settings, set_autostart, Settings};
-use crate::detector::count_roblox_instances;
+use crate::detector::{count_roblox_instances, find_roblox_windows};
+use crate::focus::{execute_stealth_pulse, is_user_actively_typing};
 use crate::gamepad::GamepadManager;
 use std::mem;
 use std::ptr;
@@ -178,13 +179,20 @@ unsafe extern "system" fn wnd_proc(
                     }
 
                     if state.remaining_seconds == 0 {
-                        // Trigger pulse!
-                        if let Some(gamepad) = state.gamepad.as_mut() {
-                            let _ = gamepad.pulse(state.pulse_direction_step);
+                        // Smart check: postpone pulse by 5s if user is actively typing or moving mouse
+                        if is_user_actively_typing(2500) {
+                            state.remaining_seconds = 5;
+                        } else {
+                            let hwnds = find_roblox_windows();
+                            if !hwnds.is_empty() {
+                                execute_stealth_pulse(&hwnds, &mut state.gamepad, state.pulse_direction_step);
+                            } else if let Some(gamepad) = state.gamepad.as_mut() {
+                                let _ = gamepad.pulse(state.pulse_direction_step);
+                            }
                             state.pulse_direction_step += 1;
                             state.pulses_count += 1;
+                            state.remaining_seconds = state.settings.interval_seconds;
                         }
-                        state.remaining_seconds = state.settings.interval_seconds;
                     }
                 }
 
@@ -351,12 +359,15 @@ unsafe fn handle_menu_command(hwnd: HWND, cmd: usize) {
             }
 
             IDM_PULSE_NOW => {
-                if let Some(gamepad) = state.gamepad.as_mut() {
+                let hwnds = find_roblox_windows();
+                if !hwnds.is_empty() {
+                    execute_stealth_pulse(&hwnds, &mut state.gamepad, state.pulse_direction_step);
+                } else if let Some(gamepad) = state.gamepad.as_mut() {
                     let _ = gamepad.pulse(state.pulse_direction_step);
-                    state.pulse_direction_step += 1;
-                    state.pulses_count += 1;
-                    state.remaining_seconds = state.settings.interval_seconds;
                 }
+                state.pulse_direction_step += 1;
+                state.pulses_count += 1;
+                state.remaining_seconds = state.settings.interval_seconds;
             }
 
             IDM_QUIT => {
