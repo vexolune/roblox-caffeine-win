@@ -10,14 +10,17 @@
   QUICK START (First Time)
 ─────────────────────────────────────────────────────────
 
-  1. Double-click  "Setup.bat" (or directly run RobloxCaffeine.exe)
-     → If ViGEmBus is not installed, click YES on the UAC prompt
-     → App starts automatically in your system tray
+  1. Just double-click "RobloxCaffeine.exe"!
+     → Zero setup needed.
+     → If ViGEmBus driver is not yet installed on your PC,
+       Roblox Caffeine will automatically detect it and ask
+       to download & install it for you on the fly.
+     → Once installed, it immediately starts in the system tray.
 
   2. Look for the coffee cup icon (☕) in the bottom-right
-     corner of your taskbar (system tray area)
+     corner of your taskbar (system tray area).
 
-  3. Right-click the icon to see status, interval, and options
+  3. Right-click the icon to see status, interval, and options.
 
   NEXT TIME: Just double-click RobloxCaffeine.exe or enable
   "Start with Windows" in the tray menu!
@@ -32,7 +35,7 @@
   ✓  Runs silently in the background (no console window)
   ✓  Works with ALL open Roblox windows at once
   ✓  Never touches your mouse or keyboard
-  ✓  Safe — uses the trusted ViGEmBus driver (same as DS4Windows)
+  ✓  Safe — uses the trusted ViGEmBus driver (same as DS4Windows & Steam)
   ✓  Single instance protection — prevents duplicate runs
 
 ─────────────────────────────────────────────────────────
@@ -50,25 +53,25 @@
   Quit                — exit the app
 
 ─────────────────────────────────────────────────────────
-  ABOUT THE UAC PROMPT
+  AUTOMATIC DRIVER SETUP
 ─────────────────────────────────────────────────────────
 
-  When you first run the app, Windows may ask for permission
-  to install the "ViGEmBus" driver if it isn't already installed.
-
-  This is SAFE and NORMAL. ViGEmBus is an open-source,
-  Microsoft-signed kernel driver used by DS4Windows and Steam Input.
-  With Smart UAC in v2.0, this prompt ONLY appears once on first run!
+  When you run the app for the first time without ViGEmBus,
+  Roblox Caffeine automatically prompts you and downloads
+  the official Microsoft-signed ViGEmBus installer from GitHub.
+  
+  Simply click "Yes" on the prompt, and it handles everything
+  seamlessly with zero manual file extraction or batch scripts!
 
 ─────────────────────────────────────────────────────────
   TROUBLESHOOTING
 ─────────────────────────────────────────────────────────
 
-  App won't start?
-  → Run "Setup.bat" as Administrator to ensure ViGEmBus is installed
+  Driver prompt declined?
+  → Re-open RobloxCaffeine.exe and click "Yes" to install ViGEmBus.
 
   Icon not in tray?
-  → Check the hidden icons arrow (^) in the taskbar
+  → Check the hidden icons arrow (^) in the taskbar.
 
   Avatar moves slightly?
   → This is normal! The virtual stick deflects for 0.3s then re-centers.
