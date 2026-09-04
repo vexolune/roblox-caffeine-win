@@ -17,6 +17,6 @@ dist/
 *.xml
 *.log
 
-# Keep release folder (contains compiled exe and setup helper)
-!release/
-!release/*
+# Release binaries (distributed via GitHub Releases)
+release/*.exe
+release/*.zip

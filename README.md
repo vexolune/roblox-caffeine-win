@@ -11,6 +11,7 @@
 ### Keep all your Roblox windows awake on Windows — zero focus stealing
 #### Ported & expanded from the original Linux project by [EbadShelby](https://github.com/EbadShelby/roblox-caffeine)
 
+[![GitHub Release](https://img.shields.io/github/v/release/vexolune/roblox-caffeine-win?style=flat-square&color=blue)](https://github.com/vexolune/roblox-caffeine-win/releases)
 [![Original Project](https://img.shields.io/badge/Original%20Linux%20Project-EbadShelby%2Froblox--caffeine-orange?style=flat-square&logo=github)](https://github.com/EbadShelby/roblox-caffeine)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Windows](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011-blue.svg?style=flat-square&logo=windows&logoColor=white)](https://microsoft.com/windows)
@@ -73,11 +74,10 @@ Traditional anti-AFK methods on Windows like auto-clickers, macros, or Lua scrip
 
 No Python installation required!
 
-1. Download or open the [`release/`](release/) folder:
-   - **`RobloxCaffeine.exe`** — Portable standalone executable.
-   - **`Setup.bat`** — First-time setup helper for the ViGEmBus driver.
-   - **`README.txt`** — Quick usage guide.
-2. Run **`Setup.bat`** (or double-click **`RobloxCaffeine.exe`**).
+1. Download the latest release from **[GitHub Releases](https://github.com/vexolune/roblox-caffeine-win/releases/latest)**:
+   - **`RobloxCaffeine-v2.0.0-Windows.zip`** (Recommended package)
+   - Or download **`RobloxCaffeine.exe`** directly.
+2. Extract the zip and run **`Setup.bat`** (or double-click **`RobloxCaffeine.exe`**).
    - If prompted by UAC on the first launch, click **Yes** to allow the ViGEmBus driver installation.
 3. Look for the coffee cup icon (☕) in the bottom-right system tray.
 4. That's it! Minimise Roblox and work or play freely.
